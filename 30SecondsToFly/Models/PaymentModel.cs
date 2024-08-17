@@ -7,12 +7,12 @@ namespace Booking.Models
         [JsonProperty("paymentType")]
         public int PaymentType { get; set; }
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [JsonProperty("cardNo")]
-        public string CardNo { get; set; }
+        public string? CardNo { get; set; }
         [JsonProperty("cID")]
-        public string CID { get; set; }
+        public string? CID { get; set; }
         [JsonProperty("expiration")]
-        public string Expiration { get; set; }
+        public string? Expiration { get; set; }
     }
 }

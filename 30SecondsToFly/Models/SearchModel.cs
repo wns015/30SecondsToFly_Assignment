@@ -11,7 +11,7 @@ namespace Booking.Models
         [JsonProperty("departureDate")]
         public DateTime DepartureDate { get; set; }
         [JsonProperty("returnDate")]
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         [JsonProperty("noOfPassengers")]
         public int NoOfPassengers { get; set; }
         [JsonProperty("fareClass")]

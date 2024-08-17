@@ -20,5 +20,7 @@ namespace Booking.Models
         public int Duration { get; set; }
         [JsonProperty("flightNo")]
         public string FlightNo { get; set; }
+        [JsonProperty("airline")]
+        public string Airline {  get; set; }
     }
 }

@@ -5,3 +5,4 @@ D:\Projects\30SecondsToFly_Assignment\30SecondsToFly\obj\Debug\net8.0\Booking.As
 D:\Projects\30SecondsToFly_Assignment\30SecondsToFly\obj\Debug\net8.0\Booking.csproj.CoreCompileInputs.cache
 D:\Projects\30SecondsToFly_Assignment\30SecondsToFly\obj\Debug\net8.0\Booking.MvcApplicationPartsAssemblyInfo.cs
 D:\Projects\30SecondsToFly_Assignment\30SecondsToFly\obj\Debug\net8.0\Booking.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\30SecondsToFly_Assignment\30SecondsToFly\obj\Debug\net8.0\Booking.sourcelink.json

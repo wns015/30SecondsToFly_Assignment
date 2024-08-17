@@ -5,9 +5,7 @@ namespace Booking.Models
     public class BookingResponseModel
     {
         [JsonProperty("bookingReferenceNo")]
-        public string? BookingReferenceNo { get; set; }
-        [JsonProperty("transactionFailed")]
-        public bool? TransactionFailed { get; set; }
+        public string BookingReferenceNo { get; set; }
 
     }
 }

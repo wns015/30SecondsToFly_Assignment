@@ -4,6 +4,10 @@ namespace Booking.Models
 {
     public class CreditCardPaymentModel
     {
+        [JsonProperty("transactionReferenceNo")]
+        public string? TransactionReferenceNo { get; set; }
+        [JsonProperty("bookingReferenceNo")]
+        public string BookingReferenceNo { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("cardNo")]

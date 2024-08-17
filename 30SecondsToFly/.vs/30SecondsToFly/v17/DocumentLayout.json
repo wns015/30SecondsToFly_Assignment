@@ -3,72 +3,38 @@
   "WorkspaceRootPath": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\models\\paymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:models\\paymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\models\\bookingrequestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:models\\bookingrequestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9C82592A-33FE-4AE6-A982-D62A0DD0365F}|..\\Common\\Common.csproj|d:\\projects\\30secondstofly_assignment\\common\\contexts\\models\\bookingtablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\models\\bookingresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:models\\bookingresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\models\\searchmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:models\\searchmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8869530-A0E9-4576-AB65-2B20EE9BCD83}|..\\PaymentGateway\\PaymentGateway.csproj|d:\\projects\\30secondstofly_assignment\\paymentgateway\\models\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\models\\flightmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:models\\flightmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9C82592A-33FE-4AE6-A982-D62A0DD0365F}|..\\Common\\Common.csproj|d:\\projects\\30secondstofly_assignment\\common\\contexts\\models\\transactiontablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\models\\passengermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:models\\passengermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8869530-A0E9-4576-AB65-2B20EE9BCD83}|..\\PaymentGateway\\PaymentGateway.csproj|d:\\projects\\30secondstofly_assignment\\paymentgateway\\services\\interfaces\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8869530-A0E9-4576-AB65-2B20EE9BCD83}|..\\PaymentGateway\\PaymentGateway.csproj|d:\\projects\\30secondstofly_assignment\\paymentgateway\\models\\creditcardpaymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8869530-A0E9-4576-AB65-2B20EE9BCD83}|..\\PaymentGateway\\PaymentGateway.csproj|d:\\projects\\30secondstofly_assignment\\paymentgateway\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\models\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:models\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\models\\creditcardpaymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:models\\creditcardpaymentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\enum\\enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:enum\\enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\booking.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:booking.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\contexts\\models\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:contexts\\models\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\contexts\\models\\flighttablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:contexts\\models\\flighttablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\contexts\\models\\bookingtablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:contexts\\models\\bookingtablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\contexts\\tsfcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:contexts\\tsfcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\contexts\\models\\transactiontablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:contexts\\models\\transactiontablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|Booking.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|30SecondsToFly.csproj|d:\\projects\\30secondstofly_assignment\\30secondstofly\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7EE35081-8809-4D36-9592-C5E77D19ED5E}|30SecondsToFly.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,71 +44,145 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PaymentModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\PaymentModel.cs",
-              "RelativeDocumentMoniker": "Models\\PaymentModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\PaymentModel.cs",
-              "RelativeToolTip": "Models\\PaymentModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T17:24:34.008Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "CreditCardPaymentModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\CreditCardPaymentModel.cs",
-              "RelativeDocumentMoniker": "Models\\CreditCardPaymentModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\CreditCardPaymentModel.cs",
-              "RelativeToolTip": "Models\\CreditCardPaymentModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAArAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\PaymentGateway\\Models\\CreditCardPaymentModel.cs",
+              "RelativeDocumentMoniker": "..\\PaymentGateway\\Models\\CreditCardPaymentModel.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\PaymentGateway\\Models\\CreditCardPaymentModel.cs",
+              "RelativeToolTip": "..\\PaymentGateway\\Models\\CreditCardPaymentModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T17:22:35.267Z",
+              "WhenOpened": "2024-08-17T17:09:33.758Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "PassengerModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\PassengerModel.cs",
-              "RelativeDocumentMoniker": "Models\\PassengerModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\PassengerModel.cs",
-              "RelativeToolTip": "Models\\PassengerModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
+              "Title": "IPaymentService.cs",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\PaymentGateway\\Services\\Interfaces\\IPaymentService.cs",
+              "RelativeDocumentMoniker": "..\\PaymentGateway\\Services\\Interfaces\\IPaymentService.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\PaymentGateway\\Services\\Interfaces\\IPaymentService.cs",
+              "RelativeToolTip": "..\\PaymentGateway\\Services\\Interfaces\\IPaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T17:21:40.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FlightModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\FlightModel.cs",
-              "RelativeDocumentMoniker": "Models\\FlightModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\FlightModel.cs",
-              "RelativeToolTip": "Models\\FlightModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T17:01:20.954Z",
+              "WhenOpened": "2024-08-17T17:08:22.661Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "SearchModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\SearchModel.cs",
-              "RelativeDocumentMoniker": "Models\\SearchModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\SearchModel.cs",
-              "RelativeToolTip": "Models\\SearchModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "Title": "PaymentResponseModel.cs",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\PaymentGateway\\Models\\PaymentResponseModel.cs",
+              "RelativeDocumentMoniker": "..\\PaymentGateway\\Models\\PaymentResponseModel.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\PaymentGateway\\Models\\PaymentResponseModel.cs",
+              "RelativeToolTip": "..\\PaymentGateway\\Models\\PaymentResponseModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T17:00:12.013Z",
+              "WhenOpened": "2024-08-17T17:07:28.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\PaymentGateway\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "..\\PaymentGateway\\Services\\PaymentService.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\PaymentGateway\\Services\\PaymentService.cs",
+              "RelativeToolTip": "..\\PaymentGateway\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T17:03:35.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CreditCardPaymentModel.cs",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\CreditCardPaymentModel.cs",
+              "RelativeDocumentMoniker": "Models\\CreditCardPaymentModel.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\CreditCardPaymentModel.cs",
+              "RelativeToolTip": "Models\\CreditCardPaymentModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T15:23:29.148Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PaymentResponseModel.cs",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\PaymentResponseModel.cs",
+              "RelativeDocumentMoniker": "Models\\PaymentResponseModel.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\PaymentResponseModel.cs",
+              "RelativeToolTip": "Models\\PaymentResponseModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T15:19:31.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookingService.cs",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Services\\BookingService.cs",
+              "RelativeDocumentMoniker": "Services\\BookingService.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Services\\BookingService.cs",
+              "RelativeToolTip": "Services\\BookingService.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAowFEAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T14:30:30.402Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "11a1bc75-4628-4ab2-9b13-c3f176a7a364",
+        "Display": 1,
+        "X": 123,
+        "Y": 76,
+        "Width": 1528,
+        "Height": 957,
+        "WindowState": 0
+      },
+      "DocumentGroups": []
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "65144b7f-5ce2-4b29-b67c-8b41f73505fb",
+        "Display": 1,
+        "X": 129,
+        "Y": 54,
+        "Width": 1528,
+        "Height": 957,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookingTableModel.cs",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\Common\\Contexts\\Models\\BookingTableModel.cs",
+              "RelativeDocumentMoniker": "..\\Common\\Contexts\\Models\\BookingTableModel.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\Common\\Contexts\\Models\\BookingTableModel.cs",
+              "RelativeToolTip": "..\\Common\\Contexts\\Models\\BookingTableModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T15:16:45.038Z",
               "EditorCaption": ""
             },
             {
@@ -153,152 +193,22 @@
               "RelativeDocumentMoniker": "Models\\BookingResponseModel.cs",
               "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\BookingResponseModel.cs",
               "RelativeToolTip": "Models\\BookingResponseModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:58:46.999Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BookingRequestModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\BookingRequestModel.cs",
-              "RelativeDocumentMoniker": "Models\\BookingRequestModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Models\\BookingRequestModel.cs",
-              "RelativeToolTip": "Models\\BookingRequestModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:58:32.121Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Enum.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Enum\\Enum.cs",
-              "RelativeDocumentMoniker": "Enum\\Enum.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Enum\\Enum.cs",
-              "RelativeToolTip": "Enum\\Enum.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:53:44.061Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "TransactionTableModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\Models\\TransactionTableModel.cs",
-              "RelativeDocumentMoniker": "Contexts\\Models\\TransactionTableModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\Models\\TransactionTableModel.cs",
-              "RelativeToolTip": "Contexts\\Models\\TransactionTableModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:43:43.22Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "BookingTableModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\Models\\BookingTableModel.cs",
-              "RelativeDocumentMoniker": "Contexts\\Models\\BookingTableModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\Models\\BookingTableModel.cs",
-              "RelativeToolTip": "Contexts\\Models\\BookingTableModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:41:03.174Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "FlightTableModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\Models\\FlightTableModel.cs",
-              "RelativeDocumentMoniker": "Contexts\\Models\\FlightTableModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\Models\\FlightTableModel.cs",
-              "RelativeToolTip": "Contexts\\Models\\FlightTableModel.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwB4AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:23:49.662Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "BaseModel.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\Models\\BaseModel.cs",
-              "RelativeDocumentMoniker": "Contexts\\Models\\BaseModel.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\Models\\BaseModel.cs",
-              "RelativeToolTip": "Contexts\\Models\\BaseModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:22:28.288Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Booking",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Booking.csproj",
-              "RelativeDocumentMoniker": "Booking.csproj",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Booking.csproj",
-              "RelativeToolTip": "Booking.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-08-16T16:18:21.437Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "TSFContext.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\TSFContext.cs",
-              "RelativeDocumentMoniker": "Contexts\\TSFContext.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Contexts\\TSFContext.cs",
-              "RelativeToolTip": "Contexts\\TSFContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:16:42.885Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-08-16T16:12:06.184Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T16:00:42.439Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\30SecondsToFly\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-08-16T15:59:46.533Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T16:59:08.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TransactionTableModel.cs",
+              "DocumentMoniker": "D:\\Projects\\30SecondsToFly_Assignment\\Common\\Contexts\\Models\\TransactionTableModel.cs",
+              "RelativeDocumentMoniker": "..\\Common\\Contexts\\Models\\TransactionTableModel.cs",
+              "ToolTip": "D:\\Projects\\30SecondsToFly_Assignment\\Common\\Contexts\\Models\\TransactionTableModel.cs",
+              "RelativeToolTip": "..\\Common\\Contexts\\Models\\TransactionTableModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T17:24:32.429Z",
               "EditorCaption": ""
             }
           ]
