@@ -1,0 +1,115 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1>Booking Details</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <h1 class="booking-ref">Ref.No: {{bookingDetails.bookingReferenceNo}}</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h3>Departure Flight</h3>
+            <div class="row">
+                <div class="col-4 px-0">
+                    <div class="row">
+                        <div class="col-12 m-1"><h3>{{bookingDetails.outboundAirline}}</h3></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            {{bookingDetails.outboundFlightNo}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 px-0">
+                    <div class="row">
+                        <div class="col-4 m-1">
+                            <h1>{{bookingDetails.origin}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 m-1">
+                            <span>{{getDateTimeString(bookingDetails.outboundDeparture)}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 m-1">
+                            <p><span>Duration: </span> <span>{{bookingDetails.outboundDuration | duration}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 px-0">
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <h1>{{bookingDetails.destination}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <span>{{getDateTimeString(bookingDetails.outboundArrival)}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center" *ngIf="bookingDetails.returnFlightNo">
+        <div class="col-12">
+            <h3>Return Flight</h3>
+            <div class="row">
+                <div class="col-4 px-0">
+                    <div class="row">
+                        <div class="col-12 m-1"><h3>{{bookingDetails.returnAirline}}</h3></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            {{bookingDetails.returnFlightNo}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 px-0">
+                    <div class="row">
+                        <div class="col-4 m-1">
+                            <h1>{{bookingDetails.origin}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 m-1">
+                            <span>{{getDateTimeString(bookingDetails.returnDeparture)}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 m-1">
+                            <p><span>Duration: </span> <span>{{bookingDetails.returnDuration | duration}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 px-0">
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <h1>{{bookingDetails.origin}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <span>{{getDateTimeString(bookingDetails.returnArrival)}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2 passenger-list" *ngFor="let passenger of bookingDetails.passengers; let i = index">
+        <div class="justify-content-center py-3 row">
+            <div class="col-2">
+                Passenger {{i + 1}}:
+            </div>
+            <div class="col-2">
+                {{passenger.name}} {{passenger.surname}}
+            </div>
+            <div class="col-2">
+                {{passenger.dateOfBirth}}
+            </div>
+        </div>
+    </div>
+</div>

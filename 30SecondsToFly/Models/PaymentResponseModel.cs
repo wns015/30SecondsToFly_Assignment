@@ -6,7 +6,5 @@ namespace Booking.Models
     {
         [JsonProperty("completedTransaction")]
         public bool CompletedTransaction { get; set; }
-        [JsonProperty("transactionReferenceNo")]
-        public string? TransactionReferenceNo { get; set; }
     }
 }

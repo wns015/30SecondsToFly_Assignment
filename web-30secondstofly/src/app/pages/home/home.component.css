@@ -1,0 +1,12 @@
+.option-button {
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.main {
+    height: 90vh;
+    align-items: center;
+}

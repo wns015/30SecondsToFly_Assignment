@@ -1,0 +1,51 @@
+<div class="container mt-4" [hidden]="isLoading || paymentSuccess">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <h1>Total: {{paymentPurpose.totalPrice}}</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <label for="paymentMethodSelect">Payment Method</label>
+            <select name="paymentMethodSelect" class="form-control" id="paymentSelect" [(ngModel)]="paymentMethod" >
+                <option value="1">Credit Card</option>
+            </select>
+        </div>
+    </div>
+    <div *ngIf="paymentMethod == paymentTypes.CreditCard">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <label for="name">Name on card</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="paymentDetails.name">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <label for="cardNo">Card Number</label>
+                <input type="text" maxlength="16" class="form-control" name="cardNo" [(ngModel)]="paymentDetails.cardNo" (keypress)="onCCDetailKeyPress($event)">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <label for="cid">CID</label>
+                <input type="password" class="form-control" maxlength="3" [(ngModel)]="paymentDetails.cID" (keypress)="onCCDetailKeyPress($event)">
+            </div>
+            <div class="col-2">
+                <label for="expDate">Exp. Date</label>
+                <input type="text" class="form-control" maxlength="5" [(ngModel)]="paymentDetails.expiration" (keypress)="onExpDateKeyPress($event)">
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4 justify-content-center">
+        <div class="col-4">
+            <button class="btn btn-secondary" style="width: 100%;" (click)="submitPayment()">SUBMIT</button>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center" *ngIf="isLoading">
+    <div class="loader" ></div>
+</div>
+<div *ngIf="paymentSuccess">
+    <app-booking-info [bookingDetails]="bookingDetails"></app-booking-info>
+</div>

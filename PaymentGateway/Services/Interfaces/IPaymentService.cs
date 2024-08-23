@@ -4,6 +4,6 @@ namespace PaymentGateway.Services.Interfaces
 {
     public interface IPaymentService
     {
-        public PaymentResponseModel CreditCardPayment(string encryptedString);
+        public PaymentResponseModel ProcessBookingCCPayment(BookingPaymentModel model);
     }
 }

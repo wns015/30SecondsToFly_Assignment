@@ -7,5 +7,17 @@
       "applicationUrl": "http://localhost:11001",
       "sslPort": 44398
     }
+  },
+  "profiles": {
+    "PaymentGateway": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7026;http://localhost:11001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
   }
 }

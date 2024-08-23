@@ -10,7 +10,7 @@ namespace Common.Contexts.Models
         [Column("Surname")]
         public string Surname { get; set; }
         [Column("DateOfBirth")]
-        public DateTime DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
         [Column("BookingReference")]
         public string BookingReference { get; set; }
         [Column("PassportCountry")]
@@ -20,7 +20,7 @@ namespace Common.Contexts.Models
         [Column("FlightFK")]
         public int FlightFK { get; set; }
         [Column("CreateDate")]
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate = DateTime.Now;
         [Column("FareClass")]
         public int FareClass { get; set; }
     }

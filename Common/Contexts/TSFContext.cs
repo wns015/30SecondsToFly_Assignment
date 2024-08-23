@@ -9,7 +9,7 @@ namespace Common.Contexts
 
         public virtual DbSet<BookingTableModel> bookingTableModels { get; set; }
         public virtual DbSet<FlightTableModel> flightTableModels { get; set; }
-        public virtual DbSet<TransactionTableModel> transactionTableModels { get; set; }
+        public virtual DbSet<BookingTransactionTableModel> transactionTableModels { get; set; }
 
     }
 }

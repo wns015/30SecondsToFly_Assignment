@@ -13,21 +13,21 @@ namespace PaymentGateway.Services
 {
     public class PaymentService : IPaymentService
     {
-        private readonly IRepository<TransactionTableModel> transactionRepo;
+        private readonly IRepository<BookingTransactionTableModel> transactionRepo;
         private readonly string serviceName = "Payment Service";
 
-        public PaymentService(IRepository<TransactionTableModel> transactionRepo)
+        public PaymentService(IRepository<BookingTransactionTableModel> transactionRepo)
         {
             this.transactionRepo = transactionRepo;
         }
 
-        public PaymentResponseModel CreditCardPayment(string encryptedString)
+        public PaymentResponseModel ProcessBookingCCPayment(BookingPaymentModel model)
         {
             GlobalLoggingHandler.Logging.Info($"{serviceName}[CreditCardPayment] Start method");   
 
             var transactionRef = Util.GenerateReference(16);
 
-            string payment = Decryptor.DecryptText(encryptedString);
+            string payment = Decryptor.DecryptText(model.PaymentDetails);
 
             CreditCardPaymentModel ccModel = new CreditCardPaymentModel();
 
@@ -43,6 +43,7 @@ namespace PaymentGateway.Services
             
 
             ccModel.TransactionReferenceNo = transactionRef;
+            ccModel.BookingReferenceNo = model.BookingReferenceNo;
 
             var encryptedModel = Encryptor.EncryptText(JsonConvert.SerializeObject(ccModel));
 
@@ -54,7 +55,7 @@ namespace PaymentGateway.Services
             };
 
 
-            var transaction = new TransactionTableModel()
+            var transaction = new BookingTransactionTableModel()
             {
                 BookingReferenceNo = ccModel.BookingReferenceNo,
                 Name = ccModel.Name,

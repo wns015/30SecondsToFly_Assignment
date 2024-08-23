@@ -1,14 +1,9 @@
-﻿using Common.Exceptions.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
+using Common.Exceptions.Responses;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Common.Exceptions
 {
-    public class InvalidParameterException : Exception
+    public class InvalidParameterException : BaseException
     {
         public InvalidParameterException() : base(ExceptionResponse.InvalidParamterException) { }
 
@@ -24,7 +19,7 @@ namespace Common.Exceptions
             return HttpStatusCode.BadRequest;
         }
 
-        public object GetObjectData()
+        public object GetObject()
         {
             return null;
         }

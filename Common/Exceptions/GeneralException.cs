@@ -3,7 +3,7 @@ using Common.Exceptions.Responses;
 
 namespace Common.Exceptions
 {
-    public class GeneralException : Exception
+    public class GeneralException :BaseException
     {
         public GeneralException() : base (ExceptionResponse.SystemError) { }
 
@@ -19,7 +19,7 @@ namespace Common.Exceptions
             return HttpStatusCode.InternalServerError;
         }
 
-        public object GetObjectData()
+        public object GetObject()
         {
             return null;
         }

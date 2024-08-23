@@ -1,0 +1,218 @@
+<div class="container">
+    <div [hidden]="readyToPay">
+        <div class="row">
+            <div class="col-2">
+                <button class="btn btn-secondary" (click)="cancel()">Back</button>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div  class="mt-2">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2>Departure Flight</h2>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center flight-info">
+                        <div class="col-sm-3 col-11 px-0">
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <h3>{{outboundFlight.airline}}</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    {{outboundFlight.flightNo}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-11 px-0">
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <h1>{{outboundFlight.origin}}</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <span>{{getDateTimeString(outboundFlight.departureTime)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <p><span>Duration: </span> <span>{{outboundFlight.duration | duration}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-11 px-0">
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <h1>{{outboundFlight.destination}}</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <span>{{getDateTimeString(outboundFlight.arrivalTime)}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-11 px-0">
+                            <div class="row">
+                                <div class="text-right m-1 col-12 d-flex align-items-center">
+                                    <h3>฿{{outboundFlight.price}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="returnFlight" class="mt-2">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2>Return Flight</h2>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-2 flight-info" >
+                        <div class="col-sm-3 col-11 px-0">
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <h3>{{returnFlight.airline}}</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    {{returnFlight.flightNo}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-11 px-0">
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <h1>{{returnFlight.origin}}</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <span>{{getDateTimeString(returnFlight.departureTime)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <p><span>Duration: </span> <span>{{returnFlight.duration | duration}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-11 px-0">
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <h1>{{returnFlight.destination}}</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 m-1">
+                                    <span>{{getDateTimeString(returnFlight.arrivalTime)}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-11 px-0">
+                            <div class="row">
+                                <div class="text-right m-1 col-12 d-flex align-items-center">
+                                    <h3>฿{{returnFlight.price}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row justify-content-center summary">
+                    <div class="col-2 text-center">
+                        <h2>฿{{price}}</h2>
+                    </div>
+                    <div class="col-1 text-center">
+                        <h2>X</h2>
+                    </div>
+                    <div class="col-2 text-center">
+                        <h2>{{booking.passengers.length}}</h2>
+                    </div>
+                    <div class="col-1 text-center">
+                        <h2>=</h2>
+                    </div>
+                    <div class="col-2 text-center">
+                        <h2>฿{{booking.totalPrice}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                
+                <div class="row" *ngFor="let passenger of booking.passengers; let i = index" >
+                    <div class="row ">
+                        <div class="col-4">
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <label for="name">Name</label>
+                                    <input type="text" style="width: 100%;" name="name" [(ngModel)]="passenger.name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <label for="passportNo">Passport No.</label>
+                                    <input type="text" style="width: 100%;" name="passportNo" [(ngModel)]="passenger.passportNo"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <label for="surname">Surname</label>
+                                    <input type="text" style="width: 100%;" name="surname" [(ngModel)]="passenger.surname"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <label for="issuingCountry">Issuing Country</label>
+                                    <input type="text"  style="width: 100%;"placeholder="Select Country"
+                                    matInput [matAutocomplete]="autoCountry_i" class="airport-select form-control"
+                                    (input)="onCountryInput($event, i)" name="passportIssuer"/>
+                                    <mat-autocomplete #autoCountry_i="matAutocomplete">
+                                        <mat-option *ngFor="let item of filteredCountryList[i]"
+                                        [value]="item" (onSelectionChange)="setPassportCountry(item, i)">{{item}}</mat-option>
+                                    </mat-autocomplete>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <label for="dateOfBirth">Date of Birth:</label>
+                                    <div class="input-group date input-r">
+                                        <mat-form-field>
+                                            <mat-label>Choose a date</mat-label>
+                                            <input matInput [matDatepicker]="dobPicker_i" class="form-control"
+                                            (dateChange)="setDateOfBirth($event, i)" name="dobPicker">
+                                            <mat-datepicker-toggle matIconSuffix [for]="dobPicker_i"></mat-datepicker-toggle>
+                                            <mat-datepicker #dobPicker_i ></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-2">
+                <button class="btn btn-secondary continue-button" (click)="continueToPayment()">CONTINUE TO PAYMENT</button>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row justify-content-center" *ngIf="readyToPay">
+        <div class="col-8">
+            <app-payment-form [isBooking]="true" [bookingRequest]="booking" (cancel)="canceledPayment()"></app-payment-form>
+        </div>
+    </div>
+</div>
+
+

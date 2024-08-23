@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Common.Exceptions
 {
-    public class NoBookingFoundException : Exception
+    public class NoBookingFoundException : BaseException
     {
         public NoBookingFoundException() : base(ExceptionResponse.NoFlightsFoundException) { }
 
@@ -19,7 +19,7 @@ namespace Common.Exceptions
             return HttpStatusCode.BadRequest;
         }
 
-        public object GetObjectData()
+        public object GetObject()
         {
             return null;
         }

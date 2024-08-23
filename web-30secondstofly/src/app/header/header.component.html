@@ -1,0 +1,23 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" id="navbarbgoverride">
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="" style="font-size: small;">MENU</span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="nav nav-tabs navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link"  [ngClass]="{'active': this.currentPage === '/home'}" (click)="headerNav('/home')" data-bs-toggle="collapse" [attr.data-bs-target]="screenWidth < 992 ? '#navbarNav' : ''">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  [ngClass]="{'active': this.currentPage === '/book-flights'}" (click)="headerNav('/book-flights')" data-bs-toggle="collapse" [attr.data-bs-target]="screenWidth < 992 ? '#navbarNav' : ''">Book A Flight</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  [ngClass]="{'active': this.currentPage === '/find-booking'}" (click)="headerNav('/find-booking')" data-bs-toggle="collapse" [attr.data-bs-target]="screenWidth < 992 ? '#navbarNav' : ''">Find My Booking</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+</div>

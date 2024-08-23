@@ -1,0 +1,44 @@
+<div class="container" [hidden]="bookingSearchResult">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <h1>Find My Booking</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-4">
+            <strong>Please enter the following details</strong>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <label for="bookingRef">Booking Ref.</label>
+            <input type="text" class="form-control" [(ngModel)]="findBookingModel.bookingReferenceNo">
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <label for="Surname">Surname</label>
+            <input type="text" class="form-control" [(ngModel)]="findBookingModel.surname">
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-4">
+            <button style="width: 100%;" class="btn btn-secondary" (click)="findBooking()">SEARCH</button>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bookingSearchResult">
+            <app-booking-info [bookingDetails]="bookingSearchResult" ></app-booking-info>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center mt-5" *ngIf="noResult">
+    <div class="col-4 text-center">
+        <h2>No Booking Found</h2>
+    </div>
+</div>
+<div class="row justify-content-center" *ngIf="isLoading">
+    <div class="loader" ></div>
+</div>

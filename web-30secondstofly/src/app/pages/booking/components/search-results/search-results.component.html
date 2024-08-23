@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 item" *ngFor="let flight of flights" [ngClass]="{'selected-border': flight.id == selectedFlight?.id}">
+            <div class="row justify-content-center">
+                <div class="col-sm-3 col-11 px-0">
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <h3>{{flight.airline}}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            {{flight.flightNo}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-11 px-0">
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <h1>{{flight.origin}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <span>{{getDateTimeString(flight.departureTime)}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <p><span>Duration: </span> <span>{{flight.duration | duration}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-11 px-0">
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <h1>{{flight.destination}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 m-1">
+                            <span>{{getDateTimeString(flight.arrivalTime)}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-11 px-0">
+                    <div class="row">
+                        <div class="text-right m-1 col-12 d-flex align-items-center">
+                            <h3>฿{{flight.price}}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn" (click)="selectFlight(flight.id)" [ngClass]="{'btn-primary': flight.id == selectedFlight?.id}">SELECT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

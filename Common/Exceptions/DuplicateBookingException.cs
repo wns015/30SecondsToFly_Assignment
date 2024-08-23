@@ -1,9 +1,10 @@
-﻿using Common.Exceptions.Responses;
+﻿
+using Common.Exceptions.Responses;
 using System.Net;
 
 namespace Common.Exceptions
 {
-    public class DuplicateBookingException : Exception
+    public class DuplicateBookingException : BaseException
     {
         private object Obj;
         public DuplicateBookingException() : base(ExceptionResponse.DuplicateBookingError) { }

@@ -1,0 +1,18 @@
+.airport-select {
+    width: 245px;
+}
+
+.passengerSelect-label, .fare-label{
+    padding-right: 10px;
+}
+
+.oneway-label {
+    padding-left: 10px;
+}
+
+.submit-button {
+    height: 40px;
+    border-radius: 5px;
+    width: 200px;
+    margin-right: 60px;
+}

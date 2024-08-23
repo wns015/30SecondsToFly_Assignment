@@ -2,8 +2,8 @@
 
 namespace Common.Contexts.Models
 {
-    [Table("Transactions")]
-    public class TransactionTableModel : BaseModel
+    [Table("BookingTransactions")]
+    public class BookingTransactionTableModel : BaseModel
     {
         [Column("TransactionReferenceNo")]
         public string TransactionReferenceNo { get; set; }
@@ -16,6 +16,6 @@ namespace Common.Contexts.Models
         [Column("TransactionStatus")]
         public bool TransactionStatus { get; set; }
         [Column("CreateDate")]
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate = DateTime.Now;
     }
 }

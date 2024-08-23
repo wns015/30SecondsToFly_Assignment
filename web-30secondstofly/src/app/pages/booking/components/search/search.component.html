@@ -1,0 +1,103 @@
+<div class="row justify-content-center">
+    <div class="col-sm-3 col-11 px-0 d-flex">
+        <div class=" m-1">
+            <p class="input-label">Origin:</p>
+            <input type="text" placeholder="Enter airport code or city"
+                matInput [matAutocomplete]="autoOrigin" class="airport-select form-control"
+                (input)="onOriginInput($event)"/>
+            <mat-autocomplete #autoOrigin="matAutocomplete">
+                <mat-option *ngFor="let item of filteredOriginList"
+                    [value]="item.Display" (onSelectionChange)="setOriginCode(item.Code)">{{item.Display}}</mat-option>
+            </mat-autocomplete>
+        </div>
+    </div>
+    <div class="col-sm-3 col-11 px-0 d-flex">
+        <div class=" m-1">
+            <p class="input-label">Destination:</p>
+            <input type="text" placeholder="Enter airport code or city"
+                matInput [matAutocomplete]="autoReturn" class="form-control airport-select"
+                (input)="onDestinationInput($event)"/>
+            <mat-autocomplete #autoReturn="matAutocomplete">
+                <mat-option *ngFor="let item of filteredDestinationList"
+                    [value]="item.Display" (onSelectionChange)="setDestinationCode(item.Code)">{{item.Display}}</mat-option>
+            </mat-autocomplete>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-3 col-11 px-0 d-flex">
+        <div class=" m-1">
+            <p class="input-label">Departure Date:</p>
+            <div class="align-items-right">
+                <mat-form-field>
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="outboundDatePicker" [min]="minDate" (dateChange)="setOutboundDate($event)">
+                    <mat-datepicker-toggle matIconSuffix [for]="outboundDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #outboundDatePicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-11 px-0 d-flex">
+        <div class=" m-1">
+            <p class="input-label">Return Date:</p>
+            <div class="input-group date input-r">
+                <mat-form-field>
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="returnDatePicker" [min]="minDate" [disabled]="this.searchParameters.isOneWay"
+                    (dateChange)="setReturnDate($event)">
+                    <mat-datepicker-toggle matIconSuffix [for]="returnDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #returnDatePicker ></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-1 col-11 px-0 d-flex">
+        <div class=" m-1">
+            <div>
+                <input id="oneWayCheck" type="checkbox" (change)="toggleIsOneWay()" >
+                <label for="oneWayCheck" class="oneway-label">One-way</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2 col-11 px-0 d-flex">
+        <div class=" m-1">
+            <div>
+                <label class="passengerSelect-label" for="passengerSelect">Passengers: </label>
+                <select id="passengerSelect" [(ngModel)]="searchParameters.noOfPassengers">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-11 px-0 d-flex">
+        <div class=" m-1">
+            <div>
+                <label for="fare-select" class="fare-label">Fare Class</label>
+                <select id="fare-select" [(ngModel)]="searchParameters.fareClass">
+                    <option value="1">Economy</option>
+                    <option value="2">Premium</option>
+                    <option value="3">Business</option>
+                    <option value="4">First Class</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-6 mt-3 px-0 text-end">
+        <button class="submit-button" (click)="searchFlights()">SEARCH FLIGHTS</button>
+    </div>
+</div>
+

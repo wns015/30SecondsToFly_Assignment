@@ -9,38 +9,30 @@ namespace Common.Security
 {
     public class Decryptor
     {
-        public static string DecryptText(string value)
-        {
-            // Get the bytes of the string
-            var bytesToBeDecrypted = Convert.FromBase64String(value);
-            var passwordBytes = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(Helper.SaltPassword));
-            var bytesDecrypted = AesDecrypt(bytesToBeDecrypted, passwordBytes);
-            var randomSaltLength = Helper.SaltLength;
+        private static string IV = "2LsQwR6zzuY4GsET";
+        private static string Key = "URunphkQDsiY47gLEXpHmNd9jKnzGTVH";
 
-            // Remove salt random value
-            var decryptedResult = new byte[bytesDecrypted.Length - randomSaltLength];
-            Array.Copy(bytesDecrypted, randomSaltLength, decryptedResult, 0, decryptedResult.Length);
-            return Encoding.UTF8.GetString(decryptedResult);
+        public static string DecryptText(string encryptedString)
+        {
+            var bytes = StringToByteArray(encryptedString);
+            var decryptedBytes = DecryptAes256HexByKey(bytes, Key, IV);
+
+            return Encoding.UTF8.GetString(decryptedBytes);
         }
 
-        private static byte[] AesDecrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes)
+        private static byte[] DecryptAes256HexByKey(byte[] bytesToBeDecrypted, string key, string iv)
         {
             byte[] decryptedBytes;
-            var saltBytes = Encoding.UTF8.GetBytes(Helper.SaltPassword);
             using (var ms = new MemoryStream())
             {
                 using (var creatorAes = new AesCryptoServiceProvider())
                 {
                     creatorAes.KeySize = 256;
                     creatorAes.BlockSize = 128;
-
-                    var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
-                    creatorAes.Key = key.GetBytes(creatorAes.KeySize / 8);
-                    creatorAes.IV = key.GetBytes(creatorAes.BlockSize / 8);
-
+                    creatorAes.Key = Encoding.UTF8.GetBytes(key);
+                    creatorAes.IV = Encoding.UTF8.GetBytes(iv);
                     creatorAes.Mode = CipherMode.CBC;
                     creatorAes.Padding = PaddingMode.PKCS7;
-
                     using (var cs = new CryptoStream(ms, creatorAes.CreateDecryptor(), CryptoStreamMode.Write))
                     {
                         cs.Write(bytesToBeDecrypted, 0, bytesToBeDecrypted.Length);
@@ -51,8 +43,15 @@ namespace Common.Security
                 }
                 ms.Close();
             }
-
             return decryptedBytes;
+        }
+        private static byte[] StringToByteArray(String hex)
+        {
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            return bytes;
         }
 
     }

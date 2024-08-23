@@ -44,13 +44,14 @@ namespace Booking.Services
 
             var result = new SearchResultModel();
 
-            if (model.ReturnDate.HasValue)
+            if (!model.IsOneWay)
             {
-                List<FlightModel> returnFlights = GetFlights(model.Destination, model.Origin, model.ReturnDate.Value, model.FareClass, model.NoOfPassengers);
+                var returnDate = DateTime.Parse(model.ReturnDate);
+                List<FlightModel> returnFlights = GetFlights(model.Destination, model.Origin, returnDate, model.FareClass, model.NoOfPassengers);
                 if(returnFlights.Count == 0)
                 {
                     GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchFlights] No return flights found | {model}");
-                    throw new NoFlightsFoundException();
+                    return null;
                 } 
                 else
                 {
@@ -58,12 +59,12 @@ namespace Booking.Services
                 }
             }
 
-            List <FlightModel> outboundFlights = GetFlights(model.Origin, model.Destination, model.DepartureDate, model.FareClass, model.NoOfPassengers);
+            var departureDate = DateTime.Parse(model.DepartureDate);
+            List <FlightModel> outboundFlights = GetFlights(model.Origin, model.Destination, departureDate, model.FareClass, model.NoOfPassengers);
 
             if (outboundFlights.Count == 0)
             {
-                GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchFlights] No outbound flights found | {model}");
-                throw new NoFlightsFoundException(); 
+                return null;
             }
             else
             {
@@ -148,6 +149,11 @@ namespace Booking.Services
             };
 
             return flight;
+        }
+
+        private DateTime ConvertTimeToLocalTime(DateTime time)
+        {
+            return time;
         }
     }
 }

@@ -1,0 +1,22 @@
+.navbar {
+    background-color: #4287f5;
+    color: #fff;
+}
+
+.header-component {
+    height: 15%;
+
+    div {
+        height: 70%;
+        display: flex;
+        align-items: center;
+    }
+
+    h1 {
+        margin: auto;
+    }
+}
+
+.nav-link {
+    cursor: pointer;
+}

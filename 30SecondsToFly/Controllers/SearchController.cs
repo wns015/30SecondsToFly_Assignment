@@ -2,11 +2,12 @@
 using Booking.Services.Interfaces;
 using Common.Controllers;
 using Common.Models;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Booking.Controllers
 {
-    [RoutePrefix("api/search")]
+    [Route("api/[controller]")]
+    [ApiController]
     public class SearchController : BaseController
     {
         private readonly ISearchService searchService;
@@ -16,11 +17,10 @@ namespace Booking.Controllers
             this.searchService = searchService;
         }
 
-        [HttpPost]
-        [Route("flights")]
+        [HttpPost("flights")]
         public Response<SearchResultModel> SearchFlights(SearchModel searchModel)
         {
-            return Response(searchService.Search(searchModel)).Success();
+            return Response(searchService.SearchFlights(searchModel)).Success();
         }
     }
 }

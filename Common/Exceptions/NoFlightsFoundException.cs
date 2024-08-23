@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Common.Exceptions
 {
-    public class NoFlightsFoundException : Exception
+    public class NoFlightsFoundException : BaseException
     {
         public NoFlightsFoundException() : base(ExceptionResponse.NoFlightsFoundException) { }
 
@@ -19,7 +19,7 @@ namespace Common.Exceptions
             return HttpStatusCode.NoContent;
         }
 
-        public object GetObjectData()
+        public object GetObject()
         {
             return null;
         }

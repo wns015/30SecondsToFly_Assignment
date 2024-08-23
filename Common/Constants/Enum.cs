@@ -33,7 +33,8 @@
             }
         }
 
-        public string ToFareClassSeating(int fareType) {
+        public string ToFareClassSeating(int fareType)
+        {
             switch (fareType)
             {
                 case 1:
@@ -48,4 +49,5 @@
                     return "EconomySeating";
             }
         }
+    }
 }

@@ -5,9 +5,9 @@ namespace PaymentGateway.Models
     public class CreditCardPaymentModel
     {
         [JsonProperty("transactionReferenceNo")]
-        public string TransactionReferenceNo { get; set; }
+        public string? TransactionReferenceNo { get; set; }
         [JsonProperty("bookingReferenceNo")]
-        public string BookingReferenceNo { get; set; }
+        public string? BookingReferenceNo { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("cardNo")]
@@ -17,6 +17,6 @@ namespace PaymentGateway.Models
         [JsonProperty("expiration")]
         public string Expiration { get; set; }
         [JsonProperty("amount")]
-        public double Amount {  get; set; }
+        public double? Amount {  get; set; }
     }
 }
