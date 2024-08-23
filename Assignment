@@ -1,0 +1,29 @@
+Your task is to create a basic flight search and booking system with the following requirements:
+1. Frontend:
+- Implement a search form for users to input origin, destination, and travel dates.
+- Display search results with flight options.
+- Create a simple booking form to capture passenger details and payment information.
+2. Backend:
+- Develop RESTful APIs to handle search requests and bookings.
+- Implement mock flight data (no need for real-time data integration).
+- Store booking information securely.
+3. Security Requirements:
+- Implement secure user authentication and authorization.
+- Ensure all data transmissions are encrypted.
+- Implement proper input validation and sanitization to prevent SQL injection and XSS attacks.
+- Handle and store sensitive information (e.g., payment details).
+- Implement proper error handling without exposing sensitive information.
+- Add basic logging for auditing purposes.
+4. Additional Considerations:
+- Follow GDPR/ PDPA principles for handling user data.
+- Implement basic role-based access control.
+- Consider scalability in your design.
+Technical Stack:
+You may choose your preferred tech stack, but please provide justification for your choices.
+Submission:
+Reply this email with the link to your private GitHub repository. Include a README with setup instructions, assumptions made, and any additional notes.
+Evaluation Criteria:
+- Code quality and organization
+- Security implementation
+- Adherence to requirements
+- Scalability and performance considerations (will be a plus)
