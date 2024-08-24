@@ -12,7 +12,7 @@ export class PassengerModel {
     public name: string;
     public surname: string;
     public dateOfBirth: string;
-    public passportCountry: string;
+    public passportIssuer: string;
     public passportNo: string;
 }
 
@@ -36,4 +36,5 @@ export class BookingResponseModel {
     public returnFlightNo: string;
     public passengers: PassengerModel[];
     public bookingReferenceNo: string;
+    public email: string;
 }

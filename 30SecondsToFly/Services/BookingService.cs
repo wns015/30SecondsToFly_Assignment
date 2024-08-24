@@ -4,15 +4,10 @@ using Common.Contexts.Models;
 using Common.Exceptions;
 using Common.Logs;
 using Common.Repositories;
-using Common.Security;
 using Newtonsoft.Json;
 using Common.Constants;
 using Common.Utilities;
-using System.Collections.Specialized;
-using Common.Models;
-using System.Text.Json.Nodes;
 using Newtonsoft.Json.Linq;
-using System.Text.Json.Serialization;
 
 namespace Booking.Services
 {
@@ -21,12 +16,14 @@ namespace Booking.Services
         private readonly IConfiguration config;
         private readonly IRepository<BookingTableModel> bookingRepo;
         private readonly IRepository<FlightTableModel> flightRepo;
+        private readonly IRepository<PassengerDetailTableModel> passengerRepo;
         private readonly string serviceName = "Booking Service";
-        public BookingService(IRepository<BookingTableModel> bookingRepo, IRepository<FlightTableModel> flightRepo, IConfiguration config) 
+        public BookingService(IRepository<BookingTableModel> bookingRepo, IRepository<FlightTableModel> flightRepo, IConfiguration config, IRepository<PassengerDetailTableModel> passengerRepo)
         {
             this.bookingRepo = bookingRepo;
             this.flightRepo = flightRepo;
             this.config = config;
+            this.passengerRepo = passengerRepo;
         }
 
         public BookingResponseModel BookFlight(BookingRequestModel model)
@@ -44,24 +41,48 @@ namespace Booking.Services
                 throw new InvalidParameterException();
             }
 
-            List<PassengerModel> duplicateBooking = new List<PassengerModel>();
+
+            var returnFlightId = model.ReturnFlightId.HasValue ? model.ReturnFlightId.Value : 0;
+
+
+            List<PassengerDetailTableModel> duplicatePassenger = new List<PassengerDetailTableModel>();
 
             foreach(var passenger in model.Passengers)
             {
-                var booking = bookingRepo.Find(p => (p.FlightFK == model.OutboundFlightId || p.FlightFK == model.ReturnFlightId) && p.Name == passenger.Name && 
-                    p.Surname == passenger.Surname && p.PassportCountry == passenger.PassportCountry && p.PassportNo == passenger.PassportNo);
-                if(booking != null)
+                var passengerCheck = passengerRepo.FindAll(p => p.Name == passenger.Name && p.Surname == passenger.Surname
+                    && p.PassportNo == passenger.PassportNo && p.PassportIssuer == passenger.PassportIssuer && p.DateOfBirth == passenger.DateOfBirth).ToList();
+
+                if(passengerCheck != null)
                 {
-                    duplicateBooking.Add(passenger);
+                    duplicatePassenger.Concat(passengerCheck).ToList();
+                }
+            };
+            
+            List<BookingTableModel> duplicateBooking = new List<BookingTableModel>();
+
+            if (duplicatePassenger.Count > 0)
+            {
+                var bookingList = duplicatePassenger.Select(p => p.BookingReferenceNo).Distinct().ToList();
+
+                foreach (var booking in bookingList)
+                {
+                    var bookingCheck = bookingRepo.Find(p => p.BookingReferenceNo == booking);
+                    if (bookingCheck != null)
+                    {
+                        if (bookingCheck.OutboundFlightFK == model.OutboundFlightId || bookingCheck.ReturnFlightFK == returnFlightId)
+                        {
+                            duplicateBooking.Add(bookingCheck);
+                        }
+                    }
                 }
             }
+            
 
             if(duplicateBooking.Count() > 0)
             {
-                GlobalLoggingHandler.Logging.Warn($"{serviceName}[BookFlight] Duplicate bookings found for passengers | {duplicateBooking}");
-                var ex = new DuplicateBookingException();
-                ex.SetObject(duplicateBooking);
-                throw ex;
+                GlobalLoggingHandler.Logging.Warn($"{serviceName}[BookFlight] Duplicate bookings found for passengers | {model.Passengers}");
+                throw new DuplicateBookingException();
+                
             }
 
             string bookingRef = Util.GenerateReference(8);
@@ -90,20 +111,19 @@ namespace Booking.Services
                 //For other payment types
                 throw new NotImplementedException();
             }
+            
 
-            List<BookingTableModel> bookings = new List<BookingTableModel>();
-            foreach (var passenger in model.Passengers)
+
+            GlobalLoggingHandler.Logging.Info($"{serviceName}[BookFlight] Save booking information to database | Booking Ref: {bookingRef}");
+            try
             {
-                bookings.Add(ConvertToBookingTableModel(passenger, bookingRef, model.OutboundFlightId, model.FareClass));
-                if(model.ReturnFlightId.HasValue)
-                {
-                    bookings.Add(ConvertToBookingTableModel(passenger, bookingRef, model.ReturnFlightId.Value, model.FareClass));
-                }
+                SaveBooking(model, bookingRef);
             }
-
-            GlobalLoggingHandler.Logging.Info($"{serviceName}[BookFlight] Insert bookings into database | Booking Ref: {bookingRef}");
-            bookingRepo.AddRange(bookings);
-            bookingRepo.SaveChanges();
+            catch
+            {
+                GlobalLoggingHandler.Logging.Error($"{serviceName}[BookFlight] Failed to insert information into database {model}");
+                throw new GeneralException();
+            }
 
             var response = GetBooking(bookingRef);
 
@@ -121,7 +141,7 @@ namespace Booking.Services
                 throw new InvalidParameterException(); 
             }
 
-            var booking = bookingRepo.Find(p => p.BookingReference == model.BookingReferenceNo && p.Surname == model.Surname);
+            var booking = passengerRepo.Find(p => p.BookingReferenceNo == model.BookingReferenceNo && p.Surname == model.Surname);
 
             if (booking == null)
             {
@@ -163,30 +183,45 @@ namespace Booking.Services
             }
         }
 
-        private BookingTableModel ConvertToBookingTableModel(PassengerModel model, string bookingRef, int flightFK, int fareClass)
+        private void SaveBooking(BookingRequestModel model, string bookingRef)
         {
             BookingTableModel booking = new BookingTableModel();
 
-            booking.BookingReference = bookingRef;
-            booking.FlightFK = flightFK;
-            booking.Name = model.Name;
-            booking.Surname = model.Surname;
-            booking.PassportCountry = model.PassportCountry;
-            booking.PassportNo = model.PassportNo;
-            booking.DateOfBirth = model.DateOfBirth;
-            booking.FareClass = fareClass;
+            booking.BookingReferenceNo = bookingRef;
+            booking.OutboundFlightFK = model.OutboundFlightId;
+            booking.ReturnFlightFK = model.ReturnFlightId.HasValue ? model.ReturnFlightId.Value : null;
+            booking.FareClass = model.FareClass;
+            booking.Email = model.Email;
 
-            return booking;
+            List<PassengerDetailTableModel> passengers = new List<PassengerDetailTableModel>();
+
+            foreach(var passenger in model.Passengers)
+            {
+                var insert = new PassengerDetailTableModel();
+                insert.Name = passenger.Name;
+                insert.Surname = passenger.Surname;
+                insert.PassportIssuer = passenger.PassportIssuer;
+                insert.PassportNo = passenger.PassportNo;
+                insert.DateOfBirth = passenger.DateOfBirth;
+                insert.BookingReferenceNo = bookingRef;
+                
+                passengers.Add(insert);
+            }
+
+            bookingRepo.Add(booking);
+            passengerRepo.AddRange(passengers);
+            bookingRepo.SaveChanges();
+            passengerRepo.SaveChanges();
         }
 
-        private PassengerModel ConvertBookingToPassengerModel(BookingTableModel model)
+        private PassengerModel PassengerDetailsToPassengerModel(PassengerDetailTableModel model)
         {
             PassengerModel passenger = new PassengerModel();
 
             passenger.Name = model.Name;
             passenger.Surname = model.Surname;
             passenger.DateOfBirth = model.DateOfBirth;
-            passenger.PassportCountry = model.PassportCountry;
+            passenger.PassportIssuer = model.PassportIssuer;
             passenger.PassportNo = model.PassportNo;
 
             return passenger;
@@ -195,48 +230,40 @@ namespace Booking.Services
         private BookingResponseModel GetBooking(string refNo)
         {
             var result = new BookingResponseModel();
-            var bookingList = bookingRepo.FindAll(p => p.BookingReference == refNo).ToList();
+            var passengerList = passengerRepo.FindAll(p => p.BookingReferenceNo == refNo).ToList();
 
-            var flightList = new List<FlightTableModel>();
+            var booking = bookingRepo.Find(p => p.BookingReferenceNo == refNo);
 
-            var flightIdList = bookingList.Select(p => p.FlightFK).Distinct().ToList();
+            var outboundFlight = flightRepo.Find(p => p.Id == booking.OutboundFlightFK);
 
-            foreach (var flight in flightIdList)
+            result.Origin = outboundFlight.Origin;
+            result.Destination = outboundFlight.Destination;
+            result.OutboundDeparture = outboundFlight.DepartureTime;
+            result.OutboundArrival = outboundFlight.ArrivalTime;
+            result.OutboundDuration = outboundFlight.Duration;
+            result.OutboundAirline = outboundFlight.Airline;
+            result.OutboundFlightNo = outboundFlight.FlightNo;
+
+            if (booking.ReturnFlightFK.HasValue)
             {
-                flightList.Add(flightRepo.Find(p => p.Id == flight));
+                var returnFlight = flightRepo.Find(p => p.Id == booking.ReturnFlightFK);
+                result.ReturnFlightNo = returnFlight.FlightNo;
+                result.ReturnDuration = returnFlight.Duration;
+                result.ReturnDeparture = returnFlight.DepartureTime;
+                result.ReturnArrival = returnFlight.ArrivalTime;
+                result.ReturnAirline = returnFlight.Airline;
             }
-
-            flightList = flightList.OrderBy(p => p.DepartureTime).ToList();
-
-            if (flightList.Count == 2)
-            {
-                result.ReturnDeparture = flightList[1].DepartureTime;
-                result.ReturnArrival = flightList[1].ArrivalTime;
-                result.ReturnDuration = flightList[1].Duration;
-                result.ReturnAirline = flightList[1].Airline;
-                result.ReturnFlightNo = flightList[1].FlightNo;
-            }
-
-            result.Origin = flightList[0].Origin;
-            result.Destination = flightList[0].Destination;
-            result.OutboundDeparture = flightList[0].DepartureTime;
-            result.OutboundArrival = flightList[0].ArrivalTime;
-            result.OutboundDuration = flightList[0].Duration;
-            result.OutboundAirline = flightList[0].Airline;
-            result.OutboundFlightNo = flightList[0].FlightNo;
-
-            var filteredPassengers = bookingList.ToList().DistinctBy(p => p.PassportNo);
 
             var passengers = new List<PassengerModel>();
 
-            foreach (var passenger in filteredPassengers)
+            foreach (var passenger in passengerList)
             {
-                passengers.Add(ConvertBookingToPassengerModel(passenger));
+                passengers.Add(PassengerDetailsToPassengerModel(passenger));
             }
 
 
             result.Passengers = passengers;
-            result.BookingReferenceNo = bookingList[0].BookingReference;
+            result.BookingReferenceNo = refNo;
 
             GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchBooking] End method");
             return result;

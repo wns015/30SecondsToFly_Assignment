@@ -18,6 +18,8 @@ namespace Booking.Models
         public string PaymentDetails { get; set; }
         [JsonProperty("fareClass")]
         public int FareClass {  get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
 
     }
 }

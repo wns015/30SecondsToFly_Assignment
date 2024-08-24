@@ -30,6 +30,7 @@ export class PaymentFormComponent {
     public isLoading: boolean;
     public paymentSuccess: boolean = false;
     public bookingDetails: BookingResponseModel;
+    public email: string;
 
     public paymentDetails: CreditCardPaymentModel = new CreditCardPaymentModel();
     private dialogConfig: MatDialogConfig = { disableClose: true };
@@ -67,7 +68,8 @@ export class PaymentFormComponent {
     public submitPayment(){
         if(this.validPaymentDetails()) {
             this.paymentPurpose.paymentMethod = this.paymentMethod;
-            let payment = JSON.stringify(this.paymentDetails)
+            this.paymentPurpose.email = this.email;
+            let payment = JSON.stringify(this.paymentDetails);
 
             this.paymentPurpose.paymentDetails = this.encryptService.encryptText(payment);
             this.isLoading = true;

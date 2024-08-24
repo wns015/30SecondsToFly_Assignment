@@ -13,13 +13,15 @@ namespace Booking.Services
     {
         public readonly IRepository<FlightTableModel> flightRepo;
         public readonly IRepository<BookingTableModel> bookingRepo;
+        public readonly IRepository<PassengerDetailTableModel> passengerRepo;
         public readonly string serviceName = "[Search Service]";
         public FareClass fareClass = new FareClass();
 
-        public SearchService(IRepository<FlightTableModel> flightRepo, IRepository<BookingTableModel> bookingRepo)
+        public SearchService(IRepository<FlightTableModel> flightRepo, IRepository<BookingTableModel> bookingRepo, IRepository<PassengerDetailTableModel> passengerRepo)
         {
             this.flightRepo = flightRepo;
             this.bookingRepo = bookingRepo;
+            this.passengerRepo = passengerRepo;
         }
 
         public SearchResultModel SearchFlights(SearchModel model)
@@ -98,7 +100,15 @@ namespace Booking.Services
             var filteredFlights = new List<FlightTableModel>();
             foreach (var flight in filteredFare)
             {
-                var bookingCount = bookingRepo.FindAll(p => p.FlightFK == flight.Id).Count();
+                var bookingCheck = bookingRepo.FindAll(p => p.ReturnFlightFK == flight.Id || p.OutboundFlightFK == flight.Id).ToList();
+
+                int bookingCount = 0;
+
+                foreach (var booking in bookingCheck)
+                {
+                    bookingCount += passengerRepo.FindAll(p => p.BookingReferenceNo == booking.BookingReferenceNo).Count();
+                }
+
                 foreach (PropertyInfo prop in flight.GetType().GetProperties())
                 {
                     
@@ -149,11 +159,6 @@ namespace Booking.Services
             };
 
             return flight;
-        }
-
-        private DateTime ConvertTimeToLocalTime(DateTime time)
-        {
-            return time;
         }
     }
 }

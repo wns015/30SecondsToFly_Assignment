@@ -61,7 +61,7 @@
     </div>
 </div>
 <div class="row justify-content-center" *ngIf="isBooking">
-    <app-booking-form [outboundFlight]="outboundFlight" [returnFlight]="returnFlight" [booking]="bookingRequest" (cancelBooking)="cancelBookingEntry()"></app-booking-form>
+    <app-booking-form [outboundFlight]="outboundFlight" [returnFlight]="returnFlight" [booking]="bookingRequest" [fareClass]="searchParameters.fareClass" (cancelBooking)="cancelBookingEntry()"></app-booking-form>
 </div>
 <div class="row justify-content-center" *ngIf="isLoading">
     <div class="loader" ></div>

@@ -10,8 +10,8 @@ namespace Booking.Models
         public string Surname { get; set; }
         [JsonProperty("dateOfBirth")]
         public string DateOfBirth { get; set; }
-        [JsonProperty("passportCountry")]
-        public string PassportCountry { get; set; }
+        [JsonProperty("passportIssuer")]
+        public string PassportIssuer { get; set; }
         [JsonProperty("passportNo")]
         public string PassportNo { get; set; }
     }

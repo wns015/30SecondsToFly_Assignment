@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<TSFContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Con")));
+builder.Services.AddDbContext<TSFContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Con")), ServiceLifetime.Transient);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,6 +21,7 @@ builder.Services.AddMvc();
 builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddScoped<IRepository<FlightTableModel>, Repository<FlightTableModel>>();
 builder.Services.AddScoped<IRepository<BookingTableModel>, Repository<BookingTableModel>>();
+builder.Services.AddScoped<IRepository<PassengerDetailTableModel>, Repository<PassengerDetailTableModel>>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 
 builder.Services.AddCors(options =>

@@ -25,6 +25,7 @@ export class BookingFormComponent {
     @Input() outboundFlight: FlightModel;
     @Input() returnFlight: FlightModel;
     @Input() booking: BookingRequestModel;
+    @Input() fareClass: number;
 
     @Output() cancelBooking = new EventEmitter<void>();
 
@@ -34,7 +35,7 @@ export class BookingFormComponent {
     public readyToPay: boolean = false;
     public bookingGroup: FormArray;
 
-    constructor(private formBuilder: FormBuilder){}
+    constructor(){}
 
     public getDateTimeString(dateTime: Date): string {
         
@@ -76,7 +77,7 @@ export class BookingFormComponent {
     }
 
     public setPassportCountry(country: string, index: number){
-        this.booking.passengers[index].passportCountry = country;
+        this.booking.passengers[index].passportIssuer = country;
     }
 
     
@@ -97,7 +98,7 @@ export class BookingFormComponent {
         let ps = this.booking.passengers
         for(let i = 0; i < ps.length; i++) {
             if(!ps[i].name || !ps[i].surname || !ps[i].dateOfBirth || 
-                !ps[i].passportCountry || !ps[i].passportNo) {
+                !ps[i].passportIssuer || !ps[i].passportNo) {
 
                 return false;
             }
