@@ -4,82 +4,106 @@ using Common.Constants;
 using Common.Contexts.Models;
 using Common.Exceptions;
 using Common.Logs;
+using Common.Mock;
 using Common.Repositories;
+using Common.Security;
+using Common.Utilities;
+using Newtonsoft.Json;
 using System.Reflection;
 
 namespace Booking.Services
 {
     public class SearchService : ISearchService
     {
-        public readonly IRepository<FlightTableModel> flightRepo;
         public readonly IRepository<BookingTableModel> bookingRepo;
         public readonly IRepository<PassengerDetailTableModel> passengerRepo;
+        public readonly MockFlights mockFlights = new MockFlights();
         public readonly string serviceName = "[Search Service]";
         public FareClass fareClass = new FareClass();
 
-        public SearchService(IRepository<FlightTableModel> flightRepo, IRepository<BookingTableModel> bookingRepo, IRepository<PassengerDetailTableModel> passengerRepo)
+        public SearchService(IRepository<BookingTableModel> bookingRepo, IRepository<PassengerDetailTableModel> passengerRepo)
         {
-            this.flightRepo = flightRepo;
             this.bookingRepo = bookingRepo;
             this.passengerRepo = passengerRepo;
         }
 
-        public SearchResultModel SearchFlights(SearchModel model)
+        public TransmissionModel SearchFlights(TransmissionModel requestModel)
         {
-            GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchFlights] Start method");
-            bool invalidParameter = false;
-
-            foreach (PropertyInfo prop in model.GetType().GetProperties())
+            try
             {
-                if (prop.Name != "ReturnDate")
+                var objectString = Decryptor.DecryptText(requestModel.EncryptedString);
+                SearchModel model = JsonConvert.DeserializeObject<SearchModel>(objectString);
+
+                GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchFlights] Start method");
+                bool invalidParameter = false;
+
+                foreach (PropertyInfo prop in model.GetType().GetProperties())
                 {
-                    if (prop.GetValue(model) == null)
-                        invalidParameter = true;
+                    if (prop.Name != "ReturnDate")
+                    {
+                        if (prop.GetValue(model) == null)
+                            invalidParameter = true;
+                    }
                 }
-            }
 
-            if (invalidParameter)
-            {
-                GlobalLoggingHandler.Logging.Error($"{serviceName}[SearchFlights] One or more values are null | {model}");
-                throw new InvalidParameterException();
-            }
-
-            var result = new SearchResultModel();
-
-            if (!model.IsOneWay)
-            {
-                var returnDate = DateTime.Parse(model.ReturnDate);
-                List<FlightModel> returnFlights = GetFlights(model.Destination, model.Origin, returnDate, model.FareClass, model.NoOfPassengers);
-                if(returnFlights.Count == 0)
+                if (invalidParameter)
                 {
-                    GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchFlights] No return flights found | {model}");
+                    GlobalLoggingHandler.Logging.Error($"{serviceName}[SearchFlights] One or more values are null | {model}");
+                    throw new InvalidParameterException();
+                }
+
+                var result = new SearchResultModel();
+
+                if (!model.IsOneWay)
+                {
+                    var returnDate = DateTime.Parse(model.ReturnDate);
+                    List<FlightModel> returnFlights = GetFlights(model.Destination, model.Origin, returnDate, model.FareClass, model.NoOfPassengers);
+                    if (returnFlights.Count == 0)
+                    {
+                        GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchFlights] No return flights found | {model}");
+                        return null;
+                    }
+                    else
+                    {
+                        result.ReturnFlights = returnFlights;
+                    }
+                }
+
+                var departureDate = DateTime.Parse(model.DepartureDate);
+                List<FlightModel> outboundFlights = GetFlights(model.Origin, model.Destination, departureDate, model.FareClass, model.NoOfPassengers);
+
+                if (outboundFlights.Count == 0)
+                {
                     return null;
-                } 
+                }
                 else
                 {
-                    result.ReturnFlights = returnFlights;
+                    result.OutboundFlights = outboundFlights;
                 }
+
+                TransmissionModel response = new TransmissionModel()
+                {
+                    EncryptedString = Encryptor.EncryptText(JsonConvert.SerializeObject(result))
+                };
+
+                GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchFlights] End method");
+                return response;
             }
-
-            var departureDate = DateTime.Parse(model.DepartureDate);
-            List <FlightModel> outboundFlights = GetFlights(model.Origin, model.Destination, departureDate, model.FareClass, model.NoOfPassengers);
-
-            if (outboundFlights.Count == 0)
+            catch (Exception ex)
             {
-                return null;
+                if (ex is InvalidParameterException)
+                {
+                    throw ex;
+                }
+                GlobalLoggingHandler.Logging.Error($"{serviceName}[SearchFlights] Error occurred | {ex.InnerException}");
+                throw new GeneralException();
             }
-            else
-            {
-                result.OutboundFlights = outboundFlights;
-            }
-
-            GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchFlights] End method");
-            return result;
+            
         }
 
         private List<FlightModel> GetFlights(string origin, string destination, DateTime departureDate, int fare, int passengers)
         {
-            List<FlightTableModel> flights = flightRepo.FindAll(p => p.Origin == origin && p.Destination == destination && p.DepartureTime.Date == departureDate.Date).ToList();
+            List<FlightTableModel> flights = mockFlights.GetFlights(origin, destination, departureDate);
 
             var filteredFare = new List<FlightTableModel>();
             foreach (var flight in flights)

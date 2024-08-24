@@ -18,9 +18,9 @@ namespace Booking.Controllers
         }
 
         [HttpPost("flights")]
-        public Response<SearchResultModel> SearchFlights(SearchModel searchModel)
+        public Response<TransmissionModel> SearchFlights(TransmissionModel requestModel)
         {
-            return Response(searchService.SearchFlights(searchModel)).Success();
+            return Response(searchService.SearchFlights(requestModel)).Success();
         }
     }
 }

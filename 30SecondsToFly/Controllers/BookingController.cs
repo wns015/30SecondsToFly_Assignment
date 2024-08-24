@@ -18,15 +18,15 @@ namespace Booking.Controllers
         }
 
         [HttpPost, Route("flights")]
-        public Response<BookingResponseModel> BookFlight(BookingRequestModel model)
+        public Response<TransmissionModel> BookFlight(TransmissionModel requestModel)
         {
-            return Response(bookingService.BookFlight(model)).Success();
+            return Response(bookingService.BookFlight(requestModel)).Success();
         }
 
         [HttpPost, Route("find")]
-        public Response<BookingResponseModel> FindBooking(BookingSearchModel model)
+        public Response<TransmissionModel> FindBooking(TransmissionModel requestModel)
         {
-            return Response(bookingService.SearchBooking(model)).Success();
+            return Response(bookingService.SearchBooking(requestModel)).Success();
         }
     }
 }

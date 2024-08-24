@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BookingInfoComponent } from "../../components/booking-info/booking-info.component";
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../dialogs/error-dialog/error-dialog.component';
+import { TransmissionModel } from '../../models/request.model';
 
 @Component({
   selector: 'app-payment-form',
@@ -72,12 +73,16 @@ export class PaymentFormComponent {
             let payment = JSON.stringify(this.paymentDetails);
 
             this.paymentPurpose.paymentDetails = this.encryptService.encryptText(payment);
+
+            let encryptedObjectString = JSON.stringify(this.paymentPurpose);
+            let encryptedObject = this.encryptService.encryptText(encryptedObjectString);
             this.isLoading = true;
 
             if(this.isBooking) {
-                this.bookingService.bookFlight(this.paymentPurpose).subscribe((res) =>{
+                this.bookingService.bookFlight(encryptedObject).subscribe((res) =>{
                     if(res.data) {
-                        this.bookingDetails = res.data;
+                        let response: TransmissionModel = res.data;
+                        this.bookingDetails = this.encryptService.decryptTextToObject(response.encryptedString);
                         this.isLoading = false;
                         this.paymentSuccess = true;
                     }

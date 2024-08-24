@@ -11,6 +11,8 @@ import { BookingFormComponent } from './components/booking-form/booking-form.com
 import { PaymentFormComponent } from '../../shared/forms/payment-form/payment-form.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/dialogs/error-dialog/error-dialog.component';
+import { EncryptionService } from '../../shared/services/encryption.service';
+import { TransmissionModel } from '../../shared/models/request.model';
 
 @Component({
   selector: 'app-booking-page',
@@ -19,7 +21,7 @@ import { ErrorDialogComponent } from '../../shared/dialogs/error-dialog/error-di
   templateUrl: './booking-page.component.html',
   styleUrl: './booking-page.component.css',
   viewProviders: [MatExpansionPanel],
-  providers: [BookingService, HttpClient]
+  providers: [BookingService, HttpClient, EncryptionService]
 })
 export class BookingPageComponent {
 
@@ -37,7 +39,7 @@ export class BookingPageComponent {
     public returnFlight: FlightModel;
     public isLoading: boolean = false;
 
-    constructor(private bookingService: BookingService, private dialog: MatDialog) {}
+    constructor(private bookingService: BookingService, private dialog: MatDialog, private encryptionService: EncryptionService) {}
 
     private dialogConfig: MatDialogConfig = { disableClose: true };
     
@@ -45,10 +47,15 @@ export class BookingPageComponent {
         this.resetSearch();
         this.searchParameters = $event;
         this.isLoading = true;
-        this.bookingService.searchFlights(this.searchParameters).subscribe((res) =>
+
+        let encryptedObjectString = JSON.stringify(this.searchParameters);
+        let encryptedObject = this.encryptionService.encryptText(encryptedObjectString);
+        this.bookingService.searchFlights(encryptedObject).subscribe((res) =>
             {
                 if(res.data){
-                    this.searchResult = res.data;
+                    let response: TransmissionModel = res.data;
+                    this.searchResult = this.encryptionService.decryptTextToObject(response.encryptedString)
+                    
                     this.isSearchExpanded = false;
                     this.isLoading = false;
                 } else {

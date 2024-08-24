@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Common.Constants;
 using Common.Utilities;
 using Newtonsoft.Json.Linq;
+using Common.Security;
 
 namespace Booking.Services
 {
@@ -26,132 +27,166 @@ namespace Booking.Services
             this.passengerRepo = passengerRepo;
         }
 
-        public BookingResponseModel BookFlight(BookingRequestModel model)
+        public TransmissionModel BookFlight(TransmissionModel requestModel)
         {
-            GlobalLoggingHandler.Logging.Info($"{serviceName}[BookFlight] Start method");
-            if (model == null)
+            try
             {
-                GlobalLoggingHandler.Logging.Error($"{serviceName}[BookFlight] Model is null");
-                throw new InvalidParameterException("Model is null");
-            }
+                GlobalLoggingHandler.Logging.Info($"{serviceName}[BookFlight] Start method");
 
-            if (model.OutboundFlightId == 0 || model.TotalPrice == 0 || model.Passengers.Count() == 0 || model.PaymentMethod == 0)
-            {
-                GlobalLoggingHandler.Logging.Error($"{serviceName}[BookFlight] Invalid parameter | {model}");
-                throw new InvalidParameterException();
-            }
-
-
-            var returnFlightId = model.ReturnFlightId.HasValue ? model.ReturnFlightId.Value : 0;
-
-
-            List<PassengerDetailTableModel> duplicatePassenger = new List<PassengerDetailTableModel>();
-
-            foreach(var passenger in model.Passengers)
-            {
-                var passengerCheck = passengerRepo.FindAll(p => p.Name == passenger.Name && p.Surname == passenger.Surname
-                    && p.PassportNo == passenger.PassportNo && p.PassportIssuer == passenger.PassportIssuer && p.DateOfBirth == passenger.DateOfBirth).ToList();
-
-                if(passengerCheck != null)
+                var objectString = Decryptor.DecryptText(requestModel.EncryptedString);
+                BookingRequestModel model = JsonConvert.DeserializeObject<BookingRequestModel>(objectString);
+                if (model == null)
                 {
-                    duplicatePassenger.Concat(passengerCheck).ToList();
+                    GlobalLoggingHandler.Logging.Error($"{serviceName}[BookFlight] Model is null");
+                    throw new InvalidParameterException("Model is null");
                 }
-            };
-            
-            List<BookingTableModel> duplicateBooking = new List<BookingTableModel>();
 
-            if (duplicatePassenger.Count > 0)
-            {
-                var bookingList = duplicatePassenger.Select(p => p.BookingReferenceNo).Distinct().ToList();
-
-                foreach (var booking in bookingList)
+                if (model.OutboundFlightId == 0 || model.TotalPrice == 0 || model.Passengers.Count() == 0 || model.PaymentMethod == 0)
                 {
-                    var bookingCheck = bookingRepo.Find(p => p.BookingReferenceNo == booking);
-                    if (bookingCheck != null)
+                    GlobalLoggingHandler.Logging.Error($"{serviceName}[BookFlight] Invalid parameter | {model}");
+                    throw new InvalidParameterException();
+                }
+
+
+                var returnFlightId = model.ReturnFlightId.HasValue ? model.ReturnFlightId.Value : 0;
+
+
+                List<PassengerDetailTableModel> duplicatePassenger = new List<PassengerDetailTableModel>();
+
+                foreach (var passenger in model.Passengers)
+                {
+                    var passengerCheck = passengerRepo.FindAll(p => p.Name == passenger.Name && p.Surname == passenger.Surname
+                        && p.PassportNo == passenger.PassportNo && p.PassportIssuer == passenger.PassportIssuer && p.DateOfBirth == passenger.DateOfBirth).ToList();
+
+                    if (passengerCheck != null)
                     {
-                        if (bookingCheck.OutboundFlightFK == model.OutboundFlightId || bookingCheck.ReturnFlightFK == returnFlightId)
+                        duplicatePassenger.Concat(passengerCheck).ToList();
+                    }
+                };
+
+                List<BookingTableModel> duplicateBooking = new List<BookingTableModel>();
+
+                if (duplicatePassenger.Count > 0)
+                {
+                    var bookingList = duplicatePassenger.Select(p => p.BookingReferenceNo).Distinct().ToList();
+
+                    foreach (var booking in bookingList)
+                    {
+                        var bookingCheck = bookingRepo.Find(p => p.BookingReferenceNo == booking);
+                        if (bookingCheck != null)
                         {
-                            duplicateBooking.Add(bookingCheck);
+                            if (bookingCheck.OutboundFlightFK == model.OutboundFlightId || bookingCheck.ReturnFlightFK == returnFlightId)
+                            {
+                                duplicateBooking.Add(bookingCheck);
+                            }
                         }
                     }
                 }
-            }
-            
 
-            if(duplicateBooking.Count() > 0)
-            {
-                GlobalLoggingHandler.Logging.Warn($"{serviceName}[BookFlight] Duplicate bookings found for passengers | {model.Passengers}");
-                throw new DuplicateBookingException();
-                
-            }
 
-            string bookingRef = Util.GenerateReference(8);
-
-            PaymentResponseModel paymentResult = new PaymentResponseModel();
-
-            if (model.PaymentMethod == (int)PaymentType.CreditCard)
-            {
-                BookingPaymentModel bookingPaymentInfo = new BookingPaymentModel()
+                if (duplicateBooking.Count() > 0)
                 {
-                    PaymentDetails = model.PaymentDetails,
-                    Amount = model.TotalPrice,
-                    BookingReferenceNo = bookingRef
+                    GlobalLoggingHandler.Logging.Warn($"{serviceName}[BookFlight] Duplicate bookings found for passengers | {model.Passengers}");
+                    throw new DuplicateBookingException();
+
+                }
+
+                string bookingRef = Util.GenerateReference(8);
+
+                PaymentResponseModel paymentResult = new PaymentResponseModel();
+
+                if (model.PaymentMethod == (int)PaymentType.CreditCard)
+                {
+                    BookingPaymentModel bookingPaymentInfo = new BookingPaymentModel()
+                    {
+                        PaymentDetails = model.PaymentDetails,
+                        Amount = model.TotalPrice,
+                        BookingReferenceNo = bookingRef
+                    };
+
+                    paymentResult = HandleCreditCardPayment(bookingPaymentInfo).Result;
+
+                    if (!paymentResult.CompletedTransaction)
+                    {
+                        GlobalLoggingHandler.Logging.Warn($"{serviceName}[BookFlight] Credit card payment was unsuccessful");
+                        throw new PaymentUnsuccessfulException();
+                    }
+                }
+                else
+                {
+                    //For other payment types
+                    throw new NotImplementedException();
+                }
+
+
+
+                GlobalLoggingHandler.Logging.Info($"{serviceName}[BookFlight] Save booking information to database | Booking Ref: {bookingRef}");
+                try
+                {
+                    SaveBooking(model, bookingRef);
+                }
+                catch
+                {
+                    GlobalLoggingHandler.Logging.Error($"{serviceName}[BookFlight] Failed to insert information into database {model}");
+                    throw new GeneralException();
+                }
+
+                var result = GetBooking(bookingRef);
+
+                TransmissionModel response = new TransmissionModel()
+                {
+                    EncryptedString = Encryptor.EncryptText(JsonConvert.SerializeObject(result))
                 };
 
-                paymentResult = HandleCreditCardPayment(bookingPaymentInfo).Result;
-
-                if (!paymentResult.CompletedTransaction)
-                {
-                    GlobalLoggingHandler.Logging.Warn($"{serviceName}[BookFlight] Credit card payment was unsuccessful");
-                    throw new PaymentUnsuccessfulException();
-                }
-            } 
-            else
-            {
-                //For other payment types
-                throw new NotImplementedException();
-            }
-            
-
-
-            GlobalLoggingHandler.Logging.Info($"{serviceName}[BookFlight] Save booking information to database | Booking Ref: {bookingRef}");
-            try
-            {
-                SaveBooking(model, bookingRef);
+                GlobalLoggingHandler.Logging.Info($"{serviceName}[BookFlight] End method");
+                return response;
             }
             catch
             {
-                GlobalLoggingHandler.Logging.Error($"{serviceName}[BookFlight] Failed to insert information into database {model}");
                 throw new GeneralException();
             }
-
-            var response = GetBooking(bookingRef);
-
-            GlobalLoggingHandler.Logging.Info($"{serviceName}[BookFlight] End method");
-            return response;
         }
 
-        public BookingResponseModel SearchBooking(BookingSearchModel model)
+        public TransmissionModel SearchBooking(TransmissionModel requestModel)
         {
-            GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchBooking] Start method");
-
-            if (model == null || String.IsNullOrEmpty(model.Surname) || String.IsNullOrEmpty(model.BookingReferenceNo))
+            try
             {
-                GlobalLoggingHandler.Logging.Error($"{serviceName}[SearchBooking] Invalid model | {model}");
-                throw new InvalidParameterException(); 
+                GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchBooking] Start method");
+                var objectString = Decryptor.DecryptText(requestModel.EncryptedString);
+                BookingSearchModel model = JsonConvert.DeserializeObject<BookingSearchModel>(objectString);
+
+                if (model == null || String.IsNullOrEmpty(model.Surname) || String.IsNullOrEmpty(model.BookingReferenceNo))
+                {
+                    GlobalLoggingHandler.Logging.Error($"{serviceName}[SearchBooking] Invalid model | {model}");
+                    throw new InvalidParameterException();
+                }
+
+                var booking = passengerRepo.Find(p => p.BookingReferenceNo == model.BookingReferenceNo && p.Surname == model.Surname);
+
+                if (booking == null)
+                {
+                    GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchBooking] No booking found | {model}");
+                    return null;
+                }
+
+                var result = GetBooking(model.BookingReferenceNo);
+
+                TransmissionModel response = new TransmissionModel()
+                {
+                    EncryptedString = Encryptor.EncryptText(JsonConvert.SerializeObject(result))
+                };
+
+                return response;
             }
-
-            var booking = passengerRepo.Find(p => p.BookingReferenceNo == model.BookingReferenceNo && p.Surname == model.Surname);
-
-            if (booking == null)
+            catch (Exception ex) 
             {
-                GlobalLoggingHandler.Logging.Info($"{serviceName}[SearchBooking] No booking found | {model}");
-                return null;
+                if (ex is InvalidParameterException)
+                {
+                    throw ex;
+                }
+                GlobalLoggingHandler.Logging.Error($"{serviceName}[SearchBooking] Error occured {ex.InnerException}");
+                throw new GeneralException();
             }
-
-            var response = GetBooking(model.BookingReferenceNo);
-
-            return response;
         }
 
         private async Task<PaymentResponseModel> HandleCreditCardPayment(BookingPaymentModel paymentMethod)

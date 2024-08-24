@@ -7,6 +7,8 @@ import { BookingInfoComponent } from "../../shared/components/booking-info/booki
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/dialogs/error-dialog/error-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EncryptionService } from '../../shared/services/encryption.service';
+import { TransmissionModel } from '../../shared/models/request.model';
 
 @Component({
   selector: 'app-booking-search',
@@ -14,11 +16,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, FormsModule, BookingInfoComponent, HttpClientModule],
   templateUrl: './booking-search.component.html',
   styleUrl: './booking-search.component.css',
-  providers: [BookingService]
+  providers: [BookingService, EncryptionService]
 })
 export class BookingSearchComponent {
 
-    constructor(private bookingService: BookingService, private dialog: MatDialog){}
+    constructor(private bookingService: BookingService, private dialog: MatDialog, private encryptionService: EncryptionService){}
 
     public findBookingModel: BookingSearchModel = new BookingSearchModel();
     public bookingSearchResult: BookingResponseModel;
@@ -34,9 +36,14 @@ export class BookingSearchComponent {
             return;
         }
         this.isLoading = true;
-        this.bookingService.findBooking(this.findBookingModel).subscribe((res) =>{
+
+        let encryptedObjectString = JSON.stringify(this.findBookingModel);
+        let encryptedObject = this.encryptionService.encryptText(encryptedObjectString);
+
+        this.bookingService.findBooking(encryptedObject).subscribe((res) =>{
             if(res.data){
-                this.bookingSearchResult = res.data
+                let response: TransmissionModel = res.data;
+                this.bookingSearchResult = this.encryptionService.decryptTextToObject(response.encryptedString);
                 this.isLoading = false;
             } else {
                 this.noResult = true;

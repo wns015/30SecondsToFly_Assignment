@@ -4,8 +4,8 @@ namespace Booking.Services.Interfaces
 {
     public interface IBookingService
     {
-        public BookingResponseModel BookFlight(BookingRequestModel model);
+        public TransmissionModel BookFlight(TransmissionModel model);
 
-        public BookingResponseModel SearchBooking(BookingSearchModel model);
+        public TransmissionModel SearchBooking(TransmissionModel model);
     }
 }
