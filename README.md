@@ -10,3 +10,12 @@ Starting the UI
 2. Run npm install
 3. After installation, run the command ng serve
 4. Open browser and go to localhost:4200
+
+What flights can be searched?
+Flights are as listed:
+BKK -> CDG 1 Sep 2024
+CDG -> BKK 7 Sep 2024
+BKK -> NRT 9 Sep 2024
+NRT -> BKK 13 Sep 2024
+
+Flight dates can be altered if the dates have already passed in the flights.json file
