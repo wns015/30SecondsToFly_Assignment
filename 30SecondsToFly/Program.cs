@@ -19,7 +19,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMvc();
 builder.Services.AddScoped<ISearchService, SearchService>();
-builder.Services.AddScoped<IRepository<FlightTableModel>, Repository<FlightTableModel>>();
 builder.Services.AddScoped<IRepository<BookingTableModel>, Repository<BookingTableModel>>();
 builder.Services.AddScoped<IRepository<PassengerDetailTableModel>, Repository<PassengerDetailTableModel>>();
 builder.Services.AddScoped<IBookingService, BookingService>();

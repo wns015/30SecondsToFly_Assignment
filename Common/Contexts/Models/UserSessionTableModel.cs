@@ -4,8 +4,10 @@ using Common.Contexts.Models;
 
 [Table("UserSession")]
 public class UserSessionTableModel : BaseModel {
+    [Column("Username")]
+    public string Username { get; set; }
     [Column("AccessToken")]
-    public string AccessTaken { get; set; }
+    public string AccessToken { get; set; }
     [Column("TokenIssued")]
     public DateTime TokenIssued { get; set; }
     [Column("TokenExpiration")]

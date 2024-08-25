@@ -11,7 +11,9 @@ namespace Common.Exceptions.Responses
         public const string NoBookingFoundCode = "10001";
         public const string DuplicateBookingCode = "10002";
         public const string NoFlightsFoundCode = "10003";
-        public const string PaymentUnsuccessfulCode = "10004";
+        public const string DuplicateUserCode = "10004";
+        public const string DuplicateEmailCode = "10005";
+        public const string PaymentUnsuccessfulCode = "10006";
         public const string InvalidParamterCode = "20001";
         public const string SystemErrorCode = "99999";
     }

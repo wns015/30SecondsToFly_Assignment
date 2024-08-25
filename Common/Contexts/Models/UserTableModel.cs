@@ -15,4 +15,8 @@ public class UserTableModel : BaseModel{
     public string Email { get; set; }
     [Column("RewardPoints")]
     public int RewardPoints { get; set; }
+    [Column("Password")]
+    public string Password { get; set; }
+    [Column("Salt")]
+    public string Salt { get; set; }
 }
