@@ -3,8 +3,10 @@
 namespace Common.Contexts.Models
 {
     [Table("Flights")]
-    public class FlightTableModel : BaseModel
+    public class FlightTableModel
     {
+        [Column("Id")]
+        public int Id { get; set; }
         [Column("Origin")]
         public string Origin { get; set; }
         [Column("Destination")]

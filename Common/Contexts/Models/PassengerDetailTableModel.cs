@@ -22,7 +22,5 @@ namespace Common.Contexts.Models
         public string PassportIssuer { get; set; }
         [Column("PassportNo")]
         public string PassportNo { get; set; }
-        [Column("CreateDate")]
-        public DateTime CreateDate = DateTime.Now;
     }
 }

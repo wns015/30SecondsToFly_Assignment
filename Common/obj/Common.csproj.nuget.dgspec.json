@@ -1,34 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\30SecondsToFly_Assignment\\Common\\Common.csproj": {}
+    "/Users/worunsukhtipyaroge/30SecondsToFly_Assignment/Common/Common.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\30SecondsToFly_Assignment\\Common\\Common.csproj": {
+    "/Users/worunsukhtipyaroge/30SecondsToFly_Assignment/Common/Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\30SecondsToFly_Assignment\\Common\\Common.csproj",
+        "projectUniqueName": "/Users/worunsukhtipyaroge/30SecondsToFly_Assignment/Common/Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Projects\\30SecondsToFly_Assignment\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\wnsuk\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\30SecondsToFly_Assignment\\Common\\obj\\",
+        "projectPath": "/Users/worunsukhtipyaroge/30SecondsToFly_Assignment/Common/Common.csproj",
+        "packagesPath": "/Users/worunsukhtipyaroge/.nuget/packages/",
+        "outputPath": "/Users/worunsukhtipyaroge/30SecondsToFly_Assignment/Common/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\wnsuk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/worunsukhtipyaroge/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -101,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
