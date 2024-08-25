@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway", "..\Paymen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{9C82592A-33FE-4AE6-A982-D62A0DD0365F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "..\Auth\Auth.csproj", "{0519380D-E285-4E49-8A4B-7FB37DBFCE74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,14 @@ Global
 		{9C82592A-33FE-4AE6-A982-D62A0DD0365F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C82592A-33FE-4AE6-A982-D62A0DD0365F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C82592A-33FE-4AE6-A982-D62A0DD0365F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E04664B-7771-45A9-B164-C3327873CABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E04664B-7771-45A9-B164-C3327873CABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E04664B-7771-45A9-B164-C3327873CABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E04664B-7771-45A9-B164-C3327873CABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0519380D-E285-4E49-8A4B-7FB37DBFCE74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0519380D-E285-4E49-8A4B-7FB37DBFCE74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0519380D-E285-4E49-8A4B-7FB37DBFCE74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0519380D-E285-4E49-8A4B-7FB37DBFCE74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

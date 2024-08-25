@@ -9,6 +9,7 @@ using Common.Constants;
 using Common.Utilities;
 using Newtonsoft.Json.Linq;
 using Common.Security;
+using Common.Mock;
 
 namespace Booking.Services
 {
@@ -16,13 +17,12 @@ namespace Booking.Services
     {
         private readonly IConfiguration config;
         private readonly IRepository<BookingTableModel> bookingRepo;
-        private readonly IRepository<FlightTableModel> flightRepo;
+        private readonly MockFlights mockFlights = new MockFlights();
         private readonly IRepository<PassengerDetailTableModel> passengerRepo;
         private readonly string serviceName = "Booking Service";
-        public BookingService(IRepository<BookingTableModel> bookingRepo, IRepository<FlightTableModel> flightRepo, IConfiguration config, IRepository<PassengerDetailTableModel> passengerRepo)
+        public BookingService(IRepository<BookingTableModel> bookingRepo, IConfiguration config, IRepository<PassengerDetailTableModel> passengerRepo)
         {
             this.bookingRepo = bookingRepo;
-            this.flightRepo = flightRepo;
             this.config = config;
             this.passengerRepo = passengerRepo;
         }
@@ -269,7 +269,7 @@ namespace Booking.Services
 
             var booking = bookingRepo.Find(p => p.BookingReferenceNo == refNo);
 
-            var outboundFlight = flightRepo.Find(p => p.Id == booking.OutboundFlightFK);
+            var outboundFlight = mockFlights.GetFlightById(booking.OutboundFlightFK);
 
             result.Origin = outboundFlight.Origin;
             result.Destination = outboundFlight.Destination;
@@ -281,7 +281,7 @@ namespace Booking.Services
 
             if (booking.ReturnFlightFK.HasValue)
             {
-                var returnFlight = flightRepo.Find(p => p.Id == booking.ReturnFlightFK);
+                var returnFlight = mockFlights.GetFlightById(booking.ReturnFlightFK.Value);
                 result.ReturnFlightNo = returnFlight.FlightNo;
                 result.ReturnDuration = returnFlight.Duration;
                 result.ReturnDeparture = returnFlight.DepartureTime;

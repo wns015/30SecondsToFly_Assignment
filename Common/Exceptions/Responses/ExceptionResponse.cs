@@ -14,5 +14,7 @@ namespace Common.Exceptions.Responses
         public const string NoBookingFound = "No booking found";
         public const string InvalidParamterException = "Invalid parameter";
         public const string PaymentUnsuccessfulException = "Payment was unsuccessful";
+        public const string DuplicateUserException = "Username has been taken";
+        public const string DuplicateEmailException = "Email already associated with an account";
     }
 }

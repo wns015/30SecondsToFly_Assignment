@@ -11,6 +11,7 @@ namespace Common.Contexts
         public virtual DbSet<FlightTableModel> flightTableModels { get; set; }
         public virtual DbSet<BookingTransactionTableModel> transactionTableModels { get; set; }
         public virtual DbSet<PassengerDetailTableModel> passengerDetailTableModels { get; set; }
-
+        public virtual DbSet<UserTableModel> userTableModels { get; set; }
+        public virtual DbSet<UserSessionTableModel> userSessionTableModels { get; set; }
     }
 }
