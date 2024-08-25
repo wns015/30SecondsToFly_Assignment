@@ -9,8 +9,6 @@ namespace Common.Contexts.Models
         public int OutboundFlightFK { get; set; }
         [Column("ReturnFlightFK")]
         public int? ReturnFlightFK { get; set; }
-        [Column("CreateDate")]
-        public DateTime CreateDate = DateTime.Now;
         [Column("FareClass")]
         public int FareClass { get; set; }
         [Column("Email")]

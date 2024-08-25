@@ -15,7 +15,5 @@ namespace Common.Contexts.Models
         public string Name { get; set; }
         [Column("TransactionStatus")]
         public bool TransactionStatus { get; set; }
-        [Column("CreateDate")]
-        public DateTime CreateDate = DateTime.Now;
     }
 }
